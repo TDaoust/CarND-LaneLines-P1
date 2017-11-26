@@ -7,10 +7,14 @@ import cv2
 # Read in and grayscale the image
 image = mpimg.imread('test_images/exit-ramp.jpg')
 gray = cv2.cvtColor(image,cv2.COLOR_RGB2GRAY)
-
+plt.figure()
+plt.imshow(gray, cmap='gray')
 # Define a kernel size and apply Gaussian smoothing
 kernel_size = 5
 blur_gray = cv2.GaussianBlur(gray,(kernel_size, kernel_size),0)
+
+plt.figure()
+plt.imshow(blur_gray, cmap='gray')
 
 # Define our parameters for Canny and apply
 low_threshold = 50
@@ -51,4 +55,5 @@ color_edges = np.dstack((edges, edges, edges))
 
 # Draw the lines on the edge image
 lines_edges = cv2.addWeighted(color_edges, 0.8, line_image, 1, 0) 
+plt.figure()
 plt.imshow(lines_edges)
